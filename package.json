@@ -1,6 +1,8 @@
 {
   "name": "with-modal-state",
+  "description": "modal decorator",
   "version": "0.0.1",
+  "author": "ltaoo <litaowork@aliyun.com>",
   "scripts": {
     "build": "node build.js"
   },
@@ -17,5 +19,13 @@
     "fs-extra": "^7.0.0",
     "webpack": "3.8.1",
     "react-dev-utils": "^5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ltaoo/with-modal-state.git"
+  },
+  "homepage": "https://github.com/ltaoo/with-modal-state/",
+  "bugs": {
+    "url": "https://github.com/ltaoo/with-modal-state/issues"
   }
 }
