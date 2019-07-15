@@ -1,7 +1,7 @@
 {
   "name": "with-modal-state",
   "description": "modal decorator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "ltaoo <litaowork@aliyun.com>",
   "scripts": {
     "build": "node build.js"
@@ -17,8 +17,8 @@
     "babel-preset-react": "^6.24.1",
     "chalk": "^2.4.1",
     "fs-extra": "^7.0.0",
-    "webpack": "3.8.1",
-    "react-dev-utils": "^5.0.1"
+    "react-dev-utils": "^5.0.1",
+    "webpack": "3.8.1"
   },
   "repository": {
     "type": "git",
