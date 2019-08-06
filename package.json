@@ -1,7 +1,7 @@
 {
   "name": "with-modal-state",
   "description": "modal decorator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "ltaoo<litaowork@aliyun.com>",
   "scripts": {
     "clean": "rimraf dist",
