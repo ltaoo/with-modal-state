@@ -99,6 +99,44 @@ class Page extends React.Component {
 }
 ```
 
+### 支持回调
+
+```js
+@withModalState()
+class Page extends React.Component {
+  prepareAdd = () => {
+    this.showModal(() => {
+      // 打开模态框后做一些事情
+    });
+  }
+  render() {
+    const {
+      visible,
+    } = this.state;
+    return (
+      <div>
+        <Button
+          onClick={this.prepareAdd}
+          style={{ marginRight: 10 }}
+          type="primary"
+        >
+          新增
+        </Button>
+        <Modal
+          visible={visible}
+          onCancel={hideModal}
+        >
+          <p>新增模态框</p>
+        </Modal>
+      </div>
+    );
+  }
+}
+```
+
+## 注意事项
+如果有多个装饰器，`withModal` 装饰器必须放在最后面。
+
 ## 说明
 代码其实非常简单，直接拷贝到项目中使用也可以，但需要有如下 `babel` 插件
 

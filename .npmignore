@@ -10,3 +10,5 @@ package-lock.json
 *.log
 
 .gitignore
+
+.DS_Store
