@@ -51,18 +51,15 @@ function createMethods(key, setState) {
     const visibleKey = createVisibleKey(key);
     const { show, hide } = createMethodKey(key);
     return {
-        [show]: function showModal() {
-            setState(
-                {
-                    [visibleKey]: true,
-                },
-                () => {},
-            );
+        [show]: function showModal(cb) {
+            setState({
+                [visibleKey]: true,
+            }, cb);
         },
-        [hide]: function hideModal() {
+        [hide]: function hideModal(cb) {
             setState({
                 [visibleKey]: false,
-            });
+            }, cb);
         },
     };
 }
