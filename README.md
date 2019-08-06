@@ -100,20 +100,17 @@ class Page extends React.Component {
 ```
 
 ## 说明
-
-一个高阶组件，维护了多个`state`。
-
-每一个元素是一个`Modal`，需要设置`key`，将会生成`show${key}Modal`、`${key}ModalVisible`、`hide${key}Modal`，并且除了`key`外的属性，都会在`createModalProps`对象上。
+代码其实非常简单，直接拷贝到项目中使用也可以，但需要有如下 `babel` 插件
 
 ```js
-@withModalState({
-  modals: [
-    {
-      key: 'create',
-    },
-    {
-      key: 'update',
-    },
-  ],
-})
+"@babel/plugin-transform-template-literals",
+"@babel/plugin-transform-arrow-functions",
+"@babel/plugin-transform-classes",
+"@babel/plugin-transform-shorthand-properties",
+"@babel/plugin-transform-computed-properties",
+"@babel/plugin-transform-parameters",
+"@babel/plugin-transform-destructuring",
+"@babel/plugin-proposal-object-rest-spread",
+"@babel/plugin-transform-block-scoping",
+"@babel/plugin-transform-spread",
 ```

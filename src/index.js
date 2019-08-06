@@ -1,9 +1,21 @@
 import React from 'react';
 
+/**
+ * @param {string} key 
+ * @return {string}
+ */
 function createVisibleKey(key) {
     return key ? `${key}ModalVisible` : 'visible';
 }
 
+/**
+ * interface MethodNames {
+ *   show: string;
+ *   hide: string;
+ * }
+ * @param {string} key 
+ * @return {MethodNames}
+ */
 function createMethodKey(key) {
     const methodKey = key ? key[0].toUpperCase() + key.slice(1) : '';
     return {
@@ -12,12 +24,34 @@ function createMethodKey(key) {
     };
 }
 
+/**
+ * interface initialState {
+ *   [key: string]: false;
+ * }
+ * @param {Array<Key>} modals 
+ * @return {InitialState}
+ */
+function initializeState(modals) {
+    return modals.reduce((prev, key) => {
+        const visibleKey = createVisibleKey(key);
+
+        return {
+            ...prev,
+            [visibleKey]: false,
+        };
+    }, {});
+}
+
+/**
+ * 
+ * @param {string} key 
+ * @param {function} setState 
+ */
 function createMethods(key, setState) {
     const visibleKey = createVisibleKey(key);
     const { show, hide } = createMethodKey(key);
     return {
         [show]: function showModal() {
-            console.log('show modal', visibleKey);
             setState(
                 {
                     [visibleKey]: true,
@@ -33,17 +67,14 @@ function createMethods(key, setState) {
     };
 }
 
-function initializeState(modals) {
-    return modals.reduce((prev, key) => {
-        const visibleKey = createVisibleKey(key);
-
-        return {
-            ...prev,
-            [visibleKey]: false,
-        };
-    }, {});
-}
-
+/**
+ * interface Methods {
+ *   [method: string]: function;
+ * }
+ * @param {Array<Key>} modals 
+ * @param {function} setState - 被包裹的组件实例
+ * @return {Methods}
+ */
 function initializeMethods(modals, setState) {
     return modals.reduce((prev, key) => ({
         ...prev,
@@ -92,4 +123,3 @@ export default function withModalState(modals = ['']) {
         }
     };
 }
-
