@@ -1,6 +1,6 @@
 # with-modal-state
 
-简化使用`Modal`的代码。
+页面中如果有许多 `Modal` 组件，为了比较好的语义，会出现 `showModal`、`hideModal` 这类模板代码，该组件将这些模板代码放到高阶组件中维护，业务代码不需要再写这些重复性非常高的代码了。
 
 ## 使用
 
@@ -23,16 +23,20 @@ class Page extends React.Component {
   render() {
     const {
       visible,
-      showModal,
-      hideModal
-    } = this.props;
-    console.log(this.props);
+    } = this.state;
     return (
       <div>
-        <Button onClick={showModal} style={{ marginRight: 10 }} type="primary">
+        <Button
+          onClick={this.showModal}
+          style={{ marginRight: 10 }}
+          type="primary"
+        >
           新增
         </Button>
-        <Modal visible={visible} onCancel={hideModal}>
+        <Modal
+          visible={visible}
+          onCancel={hideModal}
+        >
           <p>新增模态框</p>
         </Modal>
       </div>
@@ -52,36 +56,41 @@ ReactDOM.render(<App />, document.getElementById('container'));
 ### 多个模态框
 
 ```js
-@withModalState({
-  modals: [
-    {
-      key: 'create',
-    },
-    {
-      key: 'update',
-    },
-  ],
-})
+@withModalState([
+  'create',
+  'update',
+])
 class Page extends React.Component {
   render() {
     const {
-      createModalProps,
-      showCreateModal,
-      updateModalProps,
-      showUpdateModal,
-    } = this.props;
+      createModalVisible,
+      updateModalVisible,
+    } = this.state;
     return (
       <div>
-        <Button style={{ marginRight: 10 }} onClick={showCreateModal} type="primary">
+        <Button
+          style={{ marginRight: 10 }}
+          onClick={this.showCreateModal}
+          type="primary"
+        >
           新增
         </Button>
-        <Button type="primary" onClick={showUpdateModal}>
+        <Button
+          type="primary"
+          onClick={this.showUpdateModal}
+        >
           更新
         </Button>
-        <Modal {...createModalProps}>
+        <Modal
+          visible={createModalVisible}
+          onCancel={this.hideCreateModal}
+        >
           <p>新增模态框</p>
         </Modal>
-        <Modal {...updateModalProps}>
+        <Modal
+          visible={updateModalVisible}
+          onCancel={this.hideUpdateModal}
+        >
           <p>更新模态框</p>
         </Modal>
       </div>
