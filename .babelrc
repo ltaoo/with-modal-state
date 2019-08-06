@@ -1,4 +1,15 @@
 {
-  "presets": ["es2015", "env", "latest", "react"],
-  "plugins": ["transform-object-rest-spread"]
+  "presets": [],
+  "plugins": [
+    "@babel/plugin-transform-template-literals",
+    "@babel/plugin-transform-arrow-functions",
+    "@babel/plugin-transform-classes",
+    "@babel/plugin-transform-shorthand-properties",
+    "@babel/plugin-transform-computed-properties",
+    "@babel/plugin-transform-parameters",
+    "@babel/plugin-transform-destructuring",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-transform-block-scoping",
+    "@babel/plugin-transform-spread",
+  ]
 }
