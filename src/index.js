@@ -1,7 +1,18 @@
 import React from 'react';
 
 /**
- * @param {string} key 
+ * @param {any} cb
+ * @return {function|null}
+ */
+function validateCb(cb) {
+    if (typeof cb === 'function') {
+        return cb;
+    }
+    return null;
+}
+
+/**
+ * @param {string} key
  * @return {string}
  */
 function createVisibleKey(key) {
@@ -13,7 +24,7 @@ function createVisibleKey(key) {
  *   show: string;
  *   hide: string;
  * }
- * @param {string} key 
+ * @param {string} key
  * @return {MethodNames}
  */
 function createMethodKey(key) {
@@ -28,7 +39,7 @@ function createMethodKey(key) {
  * interface initialState {
  *   [key: string]: false;
  * }
- * @param {Array<Key>} modals 
+ * @param {Array<Key>} modals
  * @return {InitialState}
  */
 function initializeState(modals) {
@@ -43,23 +54,25 @@ function initializeState(modals) {
 }
 
 /**
- * 
- * @param {string} key 
- * @param {function} setState 
+ * 生成 show 和 hide 方法
+ * @param {string} key
+ * @param {function} setState
  */
 function createMethods(key, setState) {
     const visibleKey = createVisibleKey(key);
     const { show, hide } = createMethodKey(key);
     return {
         [show]: function showModal(cb) {
+            const callback = validateCb(cb);
             setState({
                 [visibleKey]: true,
-            }, cb);
+            }, callback);
         },
         [hide]: function hideModal(cb) {
+            const callback = validateCb(cb);
             setState({
                 [visibleKey]: false,
-            }, cb);
+            }, callback);
         },
     };
 }
@@ -68,7 +81,7 @@ function createMethods(key, setState) {
  * interface Methods {
  *   [method: string]: function;
  * }
- * @param {Array<Key>} modals 
+ * @param {Array<Key>} modals
  * @param {function} setState - 被包裹的组件实例
  * @return {Methods}
  */
@@ -100,7 +113,6 @@ export default function withModalState(modals = ['']) {
                 }
                 return instance;
             }
-            /* eslint-disable react/no-string-refs */
             const componentInstance = findInnerComponent(this.refs[componentRef]);
 
             const setStateFunc = (...params) => {
