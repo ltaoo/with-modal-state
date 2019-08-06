@@ -1,8 +1,12 @@
-build.js
-paths.js
-webpack.config.js
 node_modules
+src
+
+rollup.config.js
 .babelrc
-.gitignore
-*.log
+
 yarn.lock
+package-lock.json
+
+*.log
+
+.gitignore
